@@ -1,4 +1,5 @@
-import Parseur from './parseur'
+import Parseur from './formulaire/Parseur'
+import {ajouterLigne, supprimerLigne} from './formulaire/GestionFormulaire'
 
 /**
  * fonction appelé lors de la validation du formulaire
@@ -13,8 +14,13 @@ function validerFormulaire(e) {
  * Fonction appelée lorsque la page est chargée
  */
 function init () {
-  console.log('fin chargement page')
+  const boutonsSupprimerLigne = [...document.getElementsByClassName('supprimerLigne')];
+
+  boutonsSupprimerLigne.forEach((bouton) => {
+    bouton.onclick = supprimerLigne;
+  });
   document.getElementById('validerFormulaire').onclick = validerFormulaire;
+  document.getElementById('ajouterLigne').onclick = ajouterLigne;
 }
 
 window.onload = init

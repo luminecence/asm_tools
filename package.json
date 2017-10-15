@@ -1,18 +1,18 @@
 {
   "name": "asm_tools",
   "version": "1.0.0",
-  "description": "",
+  "description": "Outils permettant de remplir plus rapidement les scores des matchs de foot",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
-    "eslint": "^4.7.2",
-    "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.8.2"
+    "babel-core": "6.26.0",
+    "babel-eslint": "8.0.0",
+    "babel-loader": "7.1.2",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-preset-env": "1.6.0",
+    "eslint": "4.7.2",
+    "webpack": "3.6.0",
+    "webpack-dev-server": "2.8.2"
   },
   "scripts": {
     "build": "webpack --config ./conf/webpack.config.js",
@@ -22,7 +22,7 @@
     "type": "git",
     "url": "git+https://github.com/luminecence/asm_tools.git"
   },
-  "author": "",
+  "author": "Jordan CHEVAL & Rémy SPIR",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/luminecence/asm_tools/issues"

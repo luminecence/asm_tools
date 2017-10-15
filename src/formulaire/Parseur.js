@@ -1,4 +1,4 @@
-const NOM_EQUIPE1 = 'equipe1',
+export const NOM_EQUIPE1 = 'equipe1',
   NOM_EQUIPE2 = 'equipe2',
   NOM_SCORE1 = 'score1',
   NOM_SCORE2 = 'score2';
@@ -15,7 +15,6 @@ export default class Parseur {
     const matchs = document.querySelectorAll('.ligne')
     const codeMatchGenere = []
 
-    //utiliser reduce sur tab de div pour créer a chaque fois le code a génerer
     matchs.forEach((match) => { 
       const codeMatch = [...(match.children)].reduce((objetMatchPrecedent, match) => {
         if(match.name === NOM_EQUIPE1) {
@@ -41,7 +40,7 @@ export default class Parseur {
   /**
    * Genère le code pour tous les match
    * @param {Array<Object>} objetsMatch
-   * @returns {string} le code des match
+   * @returns {string} le code généré rerésentant tous les matchs
    */
   genererCodeMatchs(objetsMatch) {
     const codeGenerer = objetsMatch.reduce((matchPrecedent, matchCourant) => {
@@ -75,6 +74,10 @@ export default class Parseur {
     }
   }
 
+  /**
+   * Affiche une prévisualisation du code généré
+   * @param {string} codeGenerer 
+   */
   afficherPrevisualisation(codeGenerer) {
     let previsuElement = document.getElementById('previsualisation');
 
@@ -90,6 +93,9 @@ export default class Parseur {
     }
   }
 
+  /**
+   * Génère le code à partir du formulaire
+   */
   generer() {
     const selectDateMatch = document.querySelector('.blocDate select'),
       date = selectDateMatch.options[selectDateMatch.value-1].text,
