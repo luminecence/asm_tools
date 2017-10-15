@@ -61,6 +61,21 @@ export default class Parseur {
    * @param {string} codeGenerer 
    */
   afficherCodeGenerer(codeGenerer) {
+    let codeGenererElement = document.getElementById('codeGenerer');
+
+    if(!codeGenererElement) {
+      codeGenererElement = document.createElement('p');
+      codeGenererElement.id = 'codeGenerer';
+      codeGenererElement.innerText = codeGenerer;
+
+      document.body.appendChild(codeGenererElement);
+    }
+    else {
+      codeGenererElement.p = codeGenerer;
+    }
+  }
+
+  afficherPrevisualisation(codeGenerer) {
     let previsuElement = document.getElementById('previsualisation');
 
     if(!previsuElement) {
@@ -93,5 +108,6 @@ export default class Parseur {
     </table>
     `;
     this.afficherCodeGenerer(codeGenerer);
+    this.afficherPrevisualisation(codeGenerer);
   }
 }

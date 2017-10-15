@@ -11,3 +11,8 @@ table, td, tr {
   border: 3px solid grey;
   margin: 10px;
 }
+
+#codeGenerer {
+  border: 3px solid black;
+  margin: 10px;
+}
