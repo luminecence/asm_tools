@@ -1,3 +1,5 @@
+import * as HtmlUtils from './HtmlUtils';
+
 export const NOM_EQUIPE1 = 'equipe1',
   NOM_EQUIPE2 = 'equipe2',
   NOM_SCORE1 = 'score1',
@@ -13,10 +15,10 @@ export default class Parseur {
    */
   recupereDonneesFormulaire() {
     const matchs = document.querySelectorAll('.ligne')
-    const codeMatchGenere = []
+    const donneesMatchs = []
 
     matchs.forEach((match) => { 
-      const codeMatch = [...(match.children)].reduce((objetMatchPrecedent, match) => {
+      const donneeMatch = [...(match.children)].reduce((objetMatchPrecedent, match) => {
         if(match.name === NOM_EQUIPE1) {
           return {[NOM_EQUIPE1]: match.options[match.selectedIndex].text, ...objetMatchPrecedent};
         }
@@ -31,10 +33,10 @@ export default class Parseur {
         }
         return objetMatchPrecedent
       }, {})
-      codeMatchGenere.push(codeMatch)
+      donneesMatchs.push(donneeMatch)
     })
 
-    return codeMatchGenere;
+    return donneesMatchs;
   }
 
   /**
@@ -63,11 +65,15 @@ export default class Parseur {
     let codeGenererElement = document.getElementById('codeGenerer');
 
     if(!codeGenererElement) {
+      const div = document.createElement('div'),
+        boutonCopie = HtmlUtils.creerBouton({'classe': 'boutonCopie', 'onclick': copierCode, 'text': 'copie(icone)'});
       codeGenererElement = document.createElement('p');
       codeGenererElement.id = 'codeGenerer';
       codeGenererElement.innerText = codeGenerer;
 
-      document.body.appendChild(codeGenererElement);
+      div.appendChild(boutonCopie);
+      div.appendChild(codeGenererElement);
+      document.body.appendChild(div);
     }
     else {
       codeGenererElement.p = codeGenerer;
@@ -100,8 +106,7 @@ export default class Parseur {
     const selectDateMatch = document.querySelector('.blocDate select'),
       date = selectDateMatch.options[selectDateMatch.value-1].text,
       codeMatchGenere = this.recupereDonneesFormulaire(),
-      codeGenerer = `
-    <p>${date}</p>
+      codeGenerer = `<p>${date}</p>
     <table>
       <tbody>
         <tr>
@@ -116,4 +121,17 @@ export default class Parseur {
     this.afficherCodeGenerer(codeGenerer);
     this.afficherPrevisualisation(codeGenerer);
   }
+}
+
+function copierCode(e) {
+  const paragraphe = e.target.parentNode.querySelector('p'),
+    range = document.createRange();
+
+  range.selectNodeContents(paragraphe);
+
+  const selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
+
+  document.execCommand('copy');
 }
