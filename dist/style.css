@@ -2,3 +2,12 @@ div .entete h1 {
   display: inline-block;
   width: auto;
 }
+
+table, td, tr {
+  border: 1px solid black;
+}
+
+#previsualisation {
+  border: 3px solid grey;
+  margin: 10px;
+}
