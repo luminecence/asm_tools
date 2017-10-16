@@ -3,7 +3,7 @@ import {ajouterLigne, supprimerLigne} from './formulaire/GestionFormulaire'
 
 /**
  * fonction appelé lors de la validation du formulaire
- * @param {Event} e 
+ * @param {Event} e
  */
 function validerFormulaire(e) {
   const codeGenere = new Parseur().generer()
@@ -15,6 +15,8 @@ function validerFormulaire(e) {
  */
 function init () {
   const boutonsSupprimerLigne = [...document.getElementsByClassName('supprimerLigne')];
+
+  ajouterLigne();
 
   boutonsSupprimerLigne.forEach((bouton) => {
     bouton.onclick = supprimerLigne;

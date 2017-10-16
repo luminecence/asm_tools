@@ -3,12 +3,16 @@
  * @param {Object} Object Objet contenant les propriétés name, type et valeur
  * @returns {HTMLInputElement} le nouvel input
  */
-export function creeInput({name, type = 'text', valeur = null}) {
+export function creeInput({name, type = 'text', valeur = null, required = false}) {
   const input = document.createElement('input');
 
   input.name = name;
   input.type = type;
   input.valeur = valeur;
+
+  if (required === true) {
+    input.required = true;
+  }
 
   return input;
 }
@@ -20,18 +24,26 @@ export function creeInput({name, type = 'text', valeur = null}) {
  * @param {Array<Object>} Object.options options à ajouter le formulaire
  * @returns {HTMLSelectElement} le nouvel select
  */
-export function creeSelect({name, options = []}) {
+export function creeSelect({name, options = {}}) {
   const select = document.createElement('select');
 
   select.name = name;
 
-  options.forEach((contenuOption) => {
-    const option = document.createElement('option');
+  for (let groupe in options) {
+    const optGroup = document.createElement('optgroup');
 
-    option.value = contenuOption.value;
-    option.innerHTML = contenuOption.text;
-    select.appendChild(option)
-  });
+    optGroup.label = groupe;
+
+    options[groupe].forEach((element) => {
+      const option = document.createElement('option');
+
+      option.value = element;
+      option.innerHTML = element;
+      optGroup.appendChild(option);
+    });
+
+    select.appendChild(optGroup);
+  }
 
   return select;
 }
