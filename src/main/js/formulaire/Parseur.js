@@ -66,7 +66,7 @@ export default class Parseur {
 
     if(!codeGenererElement) {
       const div = document.createElement('div'),
-        boutonCopie = HtmlUtils.creerBouton({'classe': 'boutonCopie', 'onclick': copierCode, 'text': 'copie(icone)'});
+        boutonCopie = HtmlUtils.creerBouton({'classe': 'boutonCopie', 'onclick': copierCode});
       codeGenererElement = document.createElement('p');
       codeGenererElement.id = 'codeGenerer';
       codeGenererElement.innerText = codeGenerer;

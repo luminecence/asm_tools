@@ -53,7 +53,7 @@ export function creeSelect({name, options = {}}) {
  * @param {Object} Objet - objet contenant les propriétés clase, onclick, text, type
  * @returns {HTMLButtonElement} le nouveau bouton
  */
-export function creerBouton({classe, onclick, text, type = 'button'}) {
+export function creerBouton({classe, onclick, text= '', type = 'button'}) {
   const bouton = document.createElement('button'),
     texteBouton = document.createTextNode(text);
 

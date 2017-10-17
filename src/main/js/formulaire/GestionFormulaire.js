@@ -26,7 +26,6 @@ export function ajouterLigne(e) {
     ligne.appendChild(boutonSupprimerLigne);
 
     formulaire.appendChild(ligne);
-
 }
 
 /**

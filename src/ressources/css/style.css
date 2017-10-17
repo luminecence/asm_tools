@@ -16,3 +16,10 @@ table, td, tr {
   border: 3px solid black;
   margin: 10px;
 }
+
+.boutonCopie {
+  background-color: white;
+  background-image: url('../images/icone_copie.png');
+  width: 2.125rem;
+  height: 2.125rem;
+}

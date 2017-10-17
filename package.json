@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build": "webpack --config ./conf/webpack.config.js",
-    "start": "webpack-dev-server --config ./conf/webpack.config.js"
+    "start": "webpack-dev-server --config ./conf/webpack.config.js --watch"
   },
   "repository": {
     "type": "git",
