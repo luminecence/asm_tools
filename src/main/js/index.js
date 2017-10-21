@@ -1,4 +1,4 @@
-import Parseur from './formulaire/Parseur'
+import GenerateurCode from './formulaire/GenerateurCode'
 import {ajouterLigne, supprimerLigne} from './formulaire/GestionFormulaire'
 
 /**
@@ -6,14 +6,14 @@ import {ajouterLigne, supprimerLigne} from './formulaire/GestionFormulaire'
  * @param {Event} e
  */
 function validerFormulaire(e) {
-  const codeGenere = new Parseur().generer()
-  e.preventDefault()
+  const codeGenere = new GenerateurCode().generer();
+  e.preventDefault();
 }
 
 /**
  * Fonction appelée lorsque la page est chargée
  */
-function init () {
+function init() {
   const boutonsSupprimerLigne = [...document.getElementsByClassName('supprimerLigne')];
 
   ajouterLigne();
@@ -25,4 +25,4 @@ function init () {
   document.getElementById('ajouterLigne').onclick = ajouterLigne;
 }
 
-window.onload = init
+window.onload = init;

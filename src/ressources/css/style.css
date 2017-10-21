@@ -23,3 +23,49 @@ table, td, tr {
   width: 2.125rem;
   height: 2.125rem;
 }
+
+.BoutonTirAuBut {
+  background-color: white;
+  background-image: url('../images/ballon_foot.png');
+  background-repeat: no-repeat;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.containeurPopin {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 10;
+}
+
+.containeurPopin .popin {
+  background-color: #FFF;
+  border-radius: 4px;
+  max-width: 600px;
+  min-width: 250px;
+  overflow: hidden;
+}
+
+.popin .header {
+  background-color: #eeeeee;
+}
+
+.victoireTAB {
+  background-color: #aaffaa;
+}
+
+.defaiteTAB {
+  background-color: #ffaaaa;
+}
+
+.nulTAB {
+  background-color: #ffffaa
+}

@@ -1,11 +1,12 @@
-import * as HtmlUtils from './HtmlUtils';
+import * as HtmlUtils from '../utils/HtmlUtils';
+import {ATTR_SCORE_EQUIPE, ATTR_SCORE_EQUIPE_ADVERSE} from '../formulaire/GestionFormulaire';
 
 export const NOM_EQUIPE1 = 'equipe1',
   NOM_EQUIPE2 = 'equipe2',
   NOM_SCORE1 = 'score1',
   NOM_SCORE2 = 'score2';
 
-export default class Parseur {
+export default class GenerateurCode {
 
   /**
    * Recupère les données du formulaire et les place dans un tableau d'objets.
@@ -17,8 +18,8 @@ export default class Parseur {
     const matchs = document.querySelectorAll('.ligne')
     const donneesMatchs = []
 
-    matchs.forEach((match) => { 
-      const donneeMatch = [...(match.children)].reduce((objetMatchPrecedent, match) => {
+    matchs.forEach((match) => {
+      let donneeMatch = [...(match.children)].reduce((objetMatchPrecedent, match) => {
         if(match.name === NOM_EQUIPE1) {
           return {[NOM_EQUIPE1]: match.options[match.selectedIndex].text, ...objetMatchPrecedent};
         }
@@ -32,9 +33,13 @@ export default class Parseur {
           return {[NOM_SCORE2]: match.value, ...objetMatchPrecedent};
         }
         return objetMatchPrecedent
-      }, {})
+      }, {});
+
+      if(match.dataset[ATTR_SCORE_EQUIPE] && match.dataset[ATTR_SCORE_EQUIPE_ADVERSE]) {
+        donneeMatch = {[ATTR_SCORE_EQUIPE]: match.dataset[ATTR_SCORE_EQUIPE], [ATTR_SCORE_EQUIPE_ADVERSE]: match.dataset[ATTR_SCORE_EQUIPE_ADVERSE], ...donneeMatch};
+      }
       donneesMatchs.push(donneeMatch)
-    })
+    });
 
     return donneesMatchs;
   }
@@ -46,13 +51,23 @@ export default class Parseur {
    */
   genererCodeMatchs(objetsMatch) {
     const codeGenerer = objetsMatch.reduce((matchPrecedent, matchCourant) => {
-      return `${matchPrecedent}
+      let codeMatchGenere = `${matchPrecedent}
       <tr>
         <td>${matchCourant[NOM_EQUIPE1]}</td>
         <td>${matchCourant[NOM_SCORE1]} - ${matchCourant[NOM_SCORE2]}</td>
         <td>${matchCourant[NOM_EQUIPE2]}</td>
-      </tr>
-      `;
+      </tr>`;
+
+      if(matchCourant[ATTR_SCORE_EQUIPE] && matchCourant[ATTR_SCORE_EQUIPE_ADVERSE]) {
+        codeMatchGenere += `
+        <tr>
+          <td>Tir au but :</td>
+          <td>${matchCourant[ATTR_SCORE_EQUIPE]} - ${matchCourant[ATTR_SCORE_EQUIPE_ADVERSE]}</td>
+        </tr>
+        `;
+      };
+
+      return codeMatchGenere;
     }, '');
     return codeGenerer;
   }
@@ -123,6 +138,10 @@ export default class Parseur {
   }
 }
 
+/**
+ * Fonction appelé lors du clic sur le bouton pour copier le code généré
+ * @param {Event} e 
+ */
 function copierCode(e) {
   const paragraphe = e.target.parentNode.querySelector('p'),
     range = document.createRange();

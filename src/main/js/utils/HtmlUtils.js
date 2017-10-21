@@ -1,9 +1,23 @@
 /**
+ * Crée un label
+ * @param {Object} Object objet contenant les propriétes texte et labelFor
+ * @returns {HTMLLabelElement} le nouveau label
+ */
+export function creerLabel({texte, labelFor = ''}) {
+  const label = document.createElement('label');
+
+  label.appendChild(document.createTextNode(texte));
+  label.for = labelFor;
+
+  return label;
+}
+
+/**
  * Crée un input
  * @param {Object} Object Objet contenant les propriétés name, type et valeur
  * @returns {HTMLInputElement} le nouvel input
  */
-export function creeInput({name, type = 'text', valeur = null, required = false}) {
+export function creeInput({name, type = 'text', valeur = null, required = false, id = null}) {
   const input = document.createElement('input');
 
   input.name = name;
@@ -12,6 +26,10 @@ export function creeInput({name, type = 'text', valeur = null, required = false}
 
   if (required === true) {
     input.required = true;
+  }
+
+  if (id !== null) {
+    input.id = id;
   }
 
   return input;
