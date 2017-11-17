@@ -69,3 +69,25 @@ table, td, tr {
 .nulTAB {
   background-color: #ffffaa
 }
+
+@keyframes cacherPopup {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.popup {
+  display: block;
+  background-color: #eeeeee;
+  padding: 2px;
+  position: absolute;
+  top: 20px;
+  left: 40%;
+  width: 200px;
+  animation-name: cacherPopup;
+  animation-duration: 4s;
+}

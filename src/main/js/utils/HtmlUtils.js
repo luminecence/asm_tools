@@ -95,3 +95,23 @@ export function creerDiv({classe}) {
 
   return div;
 }
+
+/**
+ * Affiche une popup temporairement
+ * @param {String} texte texte de la popup
+ */
+export function afficherPopup(texte) {
+  function supprimerPopup({target}) {
+    target.parentNode.removeChild(target);
+  }
+
+  const popup = document.createElement('div'),
+    paragraphe = document.createElement('p');
+
+  paragraphe.appendChild(document.createTextNode(texte));
+  popup.addEventListener('animationend', supprimerPopup);
+  popup.classList.add('popup');
+  popup.appendChild(paragraphe);
+
+  document.body.appendChild(popup);
+}

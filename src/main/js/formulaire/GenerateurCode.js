@@ -153,4 +153,5 @@ function copierCode(e) {
   selection.addRange(range);
 
   document.execCommand('copy');
+  HtmlUtils.afficherPopup('Code copié dans le presse papier');
 }
