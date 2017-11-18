@@ -3,16 +3,10 @@
   "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
-    "allowImportExportEverywhere": false,
-    "codeFrame": false
+    "allowImportExportEverywhere": false
   },
   "env": {
     "browser": true,
     "node": true
-  },
-  "rules": {
-    "no-var": [
-      "error"
-    ]
   }
 }
