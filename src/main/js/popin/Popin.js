@@ -20,9 +20,13 @@ export default class Popin
       h1 = document.createElement('h1'),
       imageCroix = document.createElement('img');
 
+    popin.classList.add('pure-g');
+    header.classList.add('pure-u-1-1');
     h1.appendChild(document.createTextNode(titre));
+    h1.classList.add('pure-u-11-12');
     imageCroix.src = CHEMIN_IMAGE_CROIX;
     imageCroix.onclick = this.supprimerFormulaire;
+    imageCroix.classList.add('pure-u-1-12');
 
     header.appendChild(h1);
     header.appendChild(imageCroix);
