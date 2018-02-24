@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Outils permettant de remplir les scores des matchs de foot",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "moment": "2.20.1"
+  },
   "devDependencies": {
     "babel-core": "6.26.0",
     "babel-eslint": "8.0.0",

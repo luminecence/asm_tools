@@ -96,6 +96,15 @@ export function creerDiv({classe}) {
   return div;
 }
 
+export function creerOption({valeur, contenu = ''}) {
+  const option = document.createElement('option');
+
+  option.value = valeur;
+  option.insertAdjacentHTML('afterbegin', contenu);
+
+  return option;
+}
+
 /**
  * Affiche une popup temporairement
  * @param {String} texte texte de la popup
