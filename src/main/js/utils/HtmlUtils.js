@@ -100,7 +100,7 @@ export function creerOption({valeur, contenu = ''}) {
   const option = document.createElement('option');
 
   option.value = valeur;
-  option.insertAdjacentHTML('afterbegin', contenu);
+  option.insertAdjacentHTML('beforeend', contenu);
 
   return option;
 }

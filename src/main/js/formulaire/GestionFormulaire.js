@@ -2,6 +2,7 @@ import {NOM_EQUIPE1, NOM_EQUIPE2, NOM_SCORE1, NOM_SCORE2} from './GenerateurCode
 import {equipes as EQUIPES} from './Equipes';
 import * as HtmlUtils from '../utils/HtmlUtils';
 import PopinTab, {EVENT_VALIDATION_FORMULAIRE_TAB} from '../popin/PopinTAB';
+import moment from 'moment';
 
 export const CLASSE_LIGNE = 'ligne',
   CLASSE_FORMULAIRE = 'formulaire',
@@ -82,4 +83,46 @@ function gererVisuelScore(ligne, scoreEquipe, scoreEquipeAdverse) {
     ligne.classList.remove(CLASSE_DEFAITE_TAB);
     ligne.classList.add(CLASSE_NUL_TAB);
   }
+}
+
+/**
+ * Effectue le remplissage du sélecteur de dates.
+ */
+export function remplirSelecteurDate() {
+  const selecteurSemaine = document.getElementById('dateMatch');
+
+  datesPossibles().forEach((date, index) => selecteurSemaine.appendChild(HtmlUtils.creerOption({'valeur': index + 1, 'contenu': `Du ${date.debut} au ${date.fin}`})));
+}
+
+/**
+ * Génére un tableau d'objets contenant les dates possibles pour la génération.
+ * @returns {Array<Object>} Le tableau d'objets contenant les dates possibles pour la génération.
+ */
+function datesPossibles() {
+  moment.locale('fr');
+
+  const formatDate = 'D MMMM',
+    semaineCourante = {
+      'debut': moment().startOf('week').format(formatDate),
+      'fin': moment().endOf('week').format(formatDate)
+    },
+    weekEndCourant = {
+      'debut': moment().isoWeekday(6).format(formatDate),
+      'fin':  moment().isoWeekday(7).format(formatDate)
+    },
+    semaineDerniere = {
+      'debut': moment().startOf('week').subtract(1, 'week').format(formatDate),
+      'fin': moment().endOf('week').subtract(1, 'week').format(formatDate)
+    },
+    weekEndDernier = {
+      'debut': moment().isoWeekday(6).subtract(7, 'day').format(formatDate),
+      'fin':  moment().isoWeekday(7).subtract(7, 'day').format(formatDate)
+    }
+
+  return [
+    weekEndCourant,
+    semaineCourante,
+    weekEndDernier,
+    semaineDerniere
+  ];
 }
