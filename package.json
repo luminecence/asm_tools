@@ -24,7 +24,7 @@
     "mocha": "4.0.1",
     "pre-commit": "1.2.2",
     "webpack": "3.6.0",
-    "webpack-dev-server": "2.8.2"
+    "webpack-dev-server": "5.2.6"
   },
   "scripts": {
     "build": "webpack --config ./conf/webpack.config.js",
